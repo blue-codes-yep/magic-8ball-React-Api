@@ -7,23 +7,34 @@ import QuestionList from './components/QuestionList';
 
 function App() {
 
-  const [questions, setAnswers, answers] = useState([]);
-
-  const handleSend = newQuestion => {
-    setAnswers([newQuestion, ...questions]);
-  }
+  const [answers, setAnswers] = useState([]);
+  const [questions, setQuestions] = useState([])
 
   let url = `https://8ball.delegator.com/magic/JSON/"${questions}"`
 
-  const fetchData = async () => {
+  const handleSend = async (newQuestion) => {
+    let question = newQuestion;
+    let response = await fetchData(url);
+    setQuestions([question, ...questions]);
+    setAnswers([response, ...answers]);
+
+  };
 
 
+
+  const fetchData = async (url) => {
     const response = await axios.get(url);
-    console.log(response.data.magic.answer)
+    // console.log(response.data.magic.answer);
+    const answer = response.data.magic.answer;
+    console.log(answer);
+    return answer;
+  };
 
-    return response;
-  }
-  fetchData();
+  //   console.log()
+
+  //   return response;
+  // }
+  // fetchData();
 
 
   //  fetch(url)
@@ -37,7 +48,7 @@ function App() {
       <h1>Hello world</h1>
       <AskAQuestion onSend={handleSend} />
       <QuestionList data={questions} />
-      <h2>{questions}</h2>
+      <div>{answers}</div>
     </div>
   );
 }
