@@ -20,8 +20,6 @@ function App() {
 
   };
 
-
-
   const fetchData = async (url) => {
     const response = await axios.get(url);
 
