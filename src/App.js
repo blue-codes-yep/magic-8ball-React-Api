@@ -24,24 +24,13 @@ function App() {
 
   const fetchData = async (url) => {
     const response = await axios.get(url);
-    // console.log(response.data.magic.answer);
+
     const answer = response.data.magic.answer;
     console.log(answer);
     return answer;
   };
 
-  //   console.log()
 
-  //   return response;
-  // }
-  // fetchData();
-
-
-  //  fetch(url)
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const answer = json.magic.answer;
-  //   })
 
   return (
     <div className="App">
